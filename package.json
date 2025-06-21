@@ -1,0 +1,19 @@
+{
+  "name": "employee-database",
+  "version": "1.0.0",
+  "description": "Working With Database",
+  "license": "MIT",
+  "author": "Subhadip Maity",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "mongoose": "^8.15.1",
+    "nodemon": "^3.1.10"
+  }
+}

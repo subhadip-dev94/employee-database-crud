@@ -1,0 +1,54 @@
+<%- include("./layouts/header") %>
+<div class="container mt-4">
+    <h2>Employee List</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>S.No.</th>
+                <th>Name Prefix</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Gender</th>
+                <th>Email</th>
+                <th>Basic Salary</th>
+                <th>PF</th>
+                <th>ESIC</th>
+                <th>Total Salary</th>
+                <th colspan="2">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (allData.length > 0) { %>
+                <% allData.map((emp, index) => { %>
+                    <tr>
+                        <td><%= index + 1 %></td>
+                        <td><%= emp.namePrefix %></td>
+                        <td><%= emp.firstName %></td>
+                        <td><%= emp.lastName %></td>
+                        <td><%= emp.gender %></td>
+                        <td><%= emp.email %></td>
+                        <td><%= emp.basicSalary %></td>
+                        <td><%= emp.pf %></td>
+                        <td><%= emp.esic %></td>
+                        <td><%= emp.totalSalary %></td>
+                        <td>
+                            <a href="/edit/<%= emp._id %>" class="btn btn-warning">Edit</a>
+                        </td>
+                        <td>
+                            <a href="/delete/<%= emp._id %>" class="btn btn-warning">Delete</a>
+                        </td>
+                        <!--<td> <a href="/permanent-delete/<%= emp._id %>" class="btn btn-danger">Permanent Delete</a> </td>-->
+                    </tr>
+                <% }) %>
+            <% } else { %>
+                <tr>
+                    <td colspan="4">No data found</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+    <div class="text-center">
+        <a href="/" class="btn btn-primary">Add New Employee</a>    
+    </div>
+</div>
+<%- include("./layouts/footer") %>
