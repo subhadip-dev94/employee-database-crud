@@ -1,7 +1,8 @@
 <%- include("./layouts/header") %>
 <div class="container">
   <h1>Employee Details</h1>
-  <form action="/update-form/<%= empData._id %>" method="post">
+  <form action="/update-form/<%= empData._id %>" method="post" enctype="multipart/form-data">
+    
     <div class="form-group">
       <label for="email">Email address</label>
       <input id="email" type="email" class="form-control" placeholder="Enter email" name="email" value="<%= empData.email %>" required>
@@ -26,6 +27,27 @@
       <option value="Female" <%= empData.gender && empData.gender.toLowerCase() === 'female' ? 'selected' : '' %>>Female</option>
       <option value="Other" <%= empData.gender && empData.gender.toLowerCase() === 'other' ? 'selected' : '' %>>Other</option>
       </select>
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone Number</label>
+      <input id="phone" type="tel" class="form-control" placeholder="Enter phone number" name="phone" value="<%= empData.phone || '' %>" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="profileImage">Profile Image</label><br>
+      <% if (empData.profileImage) { %>
+        <img src="/uploads/<%= empData.profileImage %>" alt="Profile Image" style="max-width:120px;max-height:120px;margin-bottom:10px;"><br>
+      <% } %>
+      <input id="profileImage" type="file" class="form-control-file" name="profileImage" accept="image/*">
+    </div>
+
+    <div class="form-group">
+      <label for="resumePdf">Resume (PDF)</label><br>
+      <% if (empData.resumePdf) { %>
+        <a href="/uploads/<%= empData.resumePdf %>" target="_blank">View Current Resume</a><br>
+      <% } %>
+      <input id="resumePdf" type="file" class="form-control-file" name="resumePdf" accept="application/pdf">
     </div>
 
     <div class="form-group">

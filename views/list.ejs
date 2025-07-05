@@ -5,45 +5,63 @@
         <thead>
             <tr>
                 <th>S.No.</th>
+                <th>Progile Image</th>
                 <th>Name Prefix</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Gender</th>
                 <th>Email</th>
+                <th>Phone No.</th>
                 <th>Basic Salary</th>
                 <th>PF</th>
                 <th>ESIC</th>
                 <th>Total Salary</th>
-                <th colspan="2">Actions</th>
+                <th colspan="3">Actions</th>
             </tr>
         </thead>
         <tbody>
             <% if (allData.length > 0) { %>
-                <% allData.map((emp, index) => { %>
-                    <tr>
-                        <td><%= index + 1 %></td>
-                        <td><%= emp.namePrefix %></td>
-                        <td><%= emp.firstName %></td>
-                        <td><%= emp.lastName %></td>
-                        <td><%= emp.gender %></td>
-                        <td><%= emp.email %></td>
-                        <td><%= emp.basicSalary %></td>
-                        <td><%= emp.pf %></td>
-                        <td><%= emp.esic %></td>
-                        <td><%= emp.totalSalary %></td>
-                        <td>
-                            <a href="/edit/<%= emp._id %>" class="btn btn-warning">Edit</a>
-                        </td>
-                        <td>
-                            <a href="/delete/<%= emp._id %>" class="btn btn-warning">Delete</a>
-                        </td>
-                        <!--<td> <a href="/permanent-delete/<%= emp._id %>" class="btn btn-danger">Permanent Delete</a> </td>-->
-                    </tr>
-                <% }) %>
-            <% } else { %>
+            <% allData.map((emp, index) => { %>
                 <tr>
-                    <td colspan="4">No data found</td>
+                <td><%= index + 1 %></td>
+                <td>
+                    <% if (emp.profileImage) { %>
+                    <img src="/uploads/<%= emp.profileImage %>" alt="Profile Image" style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%;">
+                    <% } else { %>
+                    <span>No Image</span>
+                    <% } %>
+                </td>
+                <td><%= emp.namePrefix %></td>
+                <td><%= emp.firstName %></td>
+                <td><%= emp.lastName %></td>
+                <td><%= emp.gender %></td>
+                <td><%= emp.email %></td>
+                <td><%= emp.phone %></td>
+                <td><%= emp.basicSalary %></td>
+                <td><%= emp.pf %></td>
+                <td><%= emp.esic %></td>
+                <td><%= emp.totalSalary %></td>
+                <td>
+                    <a href="/edit/<%= emp._id %>" class="btn btn-warning">Edit</a>
+                </td>
+                <td>
+                    <a href="/delete/<%= emp._id %>" class="btn btn-warning">Delete</a>
+                </td>
+                <td>
+                    <% if (emp.resumePdf) { %>
+                    <a href="/uploads/<%= emp.resumePdf %>" class="btn btn-success" download>Download Resume</a>
+                    <% } else { %>
+                    <span>No Resume</span>               
+                    <% } %>
+
+                </td>
+                <!--<td> <a href="/permanent-delete/<%= emp._id %>" class="btn btn-danger">Permanent Delete</a> </td>-->
                 </tr>
+            <% }) %>
+            <% } else { %>
+            <tr>
+                <td colspan="14">No data found</td>
+            </tr>
             <% } %>
         </tbody>
     </table>

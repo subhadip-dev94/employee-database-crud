@@ -21,6 +21,14 @@ const EmpSchema = new mongoose.Schema({
         type: String,
         required: true           
     },
+    profileImage: { 
+        type: String, 
+        default: '' 
+    },
+    resumePdf: { 
+        type: String, 
+        default: '' 
+    },
     namePrefix: {
         type: String,
         required: true
